@@ -7,6 +7,7 @@
     import {CodeXml} from "lucide-svelte";
     import {Settings2} from "lucide-svelte";
     import {SquareUser} from "lucide-svelte";
+    import {page} from "$app/stores";
 </script>
 <aside class="fixed left-0 z-20 flex h-full flex-col border-r inset-y">
 	<div class="border-b p-2">
@@ -17,66 +18,76 @@
 		</Button>
 	</div>
 	<nav class="grid gap-1 p-2">
-		<!-- TEST Nav 1 -->
+		<!-- ADD -->
 		<Tooltip.Root>
 			<Tooltip.Trigger asChild
 			                 let:builder>
 				<Button variant="ghost"
 				        size="icon"
-				        class="rounded-lg bg-muted"
-				        aria-label="Playground"
-				        builders={[builder]}>
-
+				        class="rounded-lg aria-[current='page']:bg-muted transition-colors"
+				        aria-label="Elemente"
+				        aria-current="{$page.url.pathname === '/add' ? 'page' : undefined}"
+				        builders={[builder]}
+				        href="/add">
 					<SquareTerminal class="size-5" />
 				</Button>
 			</Tooltip.Trigger>
 			<Tooltip.Content side="right"
-			                 sideOffset={5}>Playground
+			                 sideOffset={5}>Element hinzufügen
 			</Tooltip.Content>
 		</Tooltip.Root>
+		<!-- EDIT -->
 		<Tooltip.Root>
 			<Tooltip.Trigger asChild
 			                 let:builder>
 				<Button variant="ghost"
 				        size="icon"
-				        class="rounded-lg"
-				        aria-label="Models"
-				        builders={[builder]}>
+				        class="rounded-lg aria-[current='page']:bg-muted transition-colors"
+				        aria-label="Edit"
+				        aria-current="{$page.url.pathname === '/edit' ? 'page' : undefined}"
+				        builders={[builder]}
+				        href="/edit">
 					<Bot class="size-5" />
 				</Button>
 			</Tooltip.Trigger>
 			<Tooltip.Content side="right"
-			                 sideOffset={5}>Models
+			                 sideOffset={5}>Bearbeiten
 			</Tooltip.Content>
 		</Tooltip.Root>
+		<!-- STYLE -->
 		<Tooltip.Root>
 			<Tooltip.Trigger asChild
 			                 let:builder>
 				<Button variant="ghost"
 				        size="icon"
-				        class="rounded-lg"
-				        aria-label="API"
-				        builders={[builder]}>
+				        class="rounded-lg aria-[current='page']:bg-muted transition-colors"
+				        aria-label="Style"
+				        aria-current="{$page.url.pathname === '/style' ? 'page' : undefined}"
+				        builders={[builder]}
+				        href="/style">
 					<CodeXml class="size-5" />
 				</Button>
 			</Tooltip.Trigger>
 			<Tooltip.Content side="right"
-			                 sideOffset={5}>API
+			                 sideOffset={5}>Styling
 			</Tooltip.Content>
 		</Tooltip.Root>
+		<!-- SETTINGS -->
 		<Tooltip.Root>
 			<Tooltip.Trigger asChild
 			                 let:builder>
 				<Button variant="ghost"
 				        size="icon"
-				        class="rounded-lg"
+				        class="rounded-lg aria-[current='page']:bg-muted transition-colors"
 				        aria-label="Settings"
-				        builders={[builder]}>
+				        aria-current="{$page.url.pathname === '/settings' ? 'page' : undefined}"
+				        builders={[builder]}
+				        href="/settings">
 					<Settings2 class="size-5" />
 				</Button>
 			</Tooltip.Trigger>
 			<Tooltip.Content side="right"
-			                 sideOffset={5}>Settings
+			                 sideOffset={5}>Einstellungen
 			</Tooltip.Content>
 		</Tooltip.Root>
 	</nav>
